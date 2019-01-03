@@ -8,7 +8,7 @@ const Shelf = props => {
     <div className="bookshelf-books">
       <ol className="books-grid">
         { props.books.filter(book => book.shelf === props.title).map( (book, index) => (
-          <Book key={index} index={index} bookInfo={book} shelf={props.title}/>
+          <li key={index}><Book bookInfo={book} shelf={props.title} move={props.move}/></li>
         ))}
       </ol>
     </div>
@@ -18,6 +18,7 @@ const Shelf = props => {
 Shelf.propTypes = {
   title: PropTypes.string.isRequired,
   books: PropTypes.array.isRequired,
+  move: PropTypes.func.isRequired,
 };
 
 export default Shelf;
