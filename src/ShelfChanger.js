@@ -13,10 +13,10 @@ const ShelfChanger = props => {
   
   
   return (<div className="book-shelf-changer">
-    <select>
+    <select onChange={move}>
       <option value="move" disabled>Move to...</option>
       {shelfOptions.filter(o => o !== props.shelf).map(option => (
-        <option key={option}  onClick={move} value={option}>{option}</option> ))}
+        <option key={option} value={option}>{option}</option> ))}
     </select>
   </div>);
 }

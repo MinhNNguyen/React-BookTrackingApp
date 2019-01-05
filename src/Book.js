@@ -5,7 +5,7 @@ import ShelfChanger from './ShelfChanger';
 const Book = props => {
   
   const move = targetShelf => {
-  	props.move(props.bookInfo, targetShelf);
+  	props.move({bookInfo: props.bookInfo, targetShelf: targetShelf});
   };
   
   return(

@@ -7,7 +7,7 @@ const Shelf = props => {
     <h2 className="bookshelf-title">{props.title}</h2>
     <div className="bookshelf-books">
       <ol className="books-grid">
-        { props.books.filter(book => book.shelf === props.title).map( (book, index) => (
+        { props.books.map( (book, index) => (
           <li key={index}><Book bookInfo={book} shelf={props.title} move={props.move}/></li>
         ))}
       </ol>
