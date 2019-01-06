@@ -1,29 +1,39 @@
+/**
+ * Provide UI and handle event for user to move books to different shelf
+ */
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const shelfOptions = ['Currently Reading','Want to Read','Read', 'None'];
-
-// TO DO generateOption does not work. Consider using diffrent option
 const ShelfChanger = props => {
   
-  const move = event => {
-    event.preventDefault();
-    props.move(event.target.value); 
+  /**
+   * Calling the updateShelf event being passed from parent class when people select
+   * shelf to move the book to
+   */
+  const updateShelf = event => {
+    props.updateShelf(props.bookInfo, event.target.value); 
   };
   
-  
+  /**
+   * Return UI for the element
+   */
   return (<div className="book-shelf-changer">
-    <select onChange={move}>
-      <option value="move" disabled>Move to...</option>
-      {shelfOptions.filter(o => o !== props.shelf).map(option => (
-        <option key={option} value={option}>{option}</option> ))}
-    </select>
+    <select value={props.bookInfo.shelf} onChange={updateShelf}>
+	  <option value="move" disabled>Move to...</option>
+	  <option value="currentlyReading">Currently Reading</option>
+	  <option value="wantToRead">Want to Read</option>
+	  <option value="read">Read</option>
+	  <option value="none">None</option>
+	</select>
   </div>);
 }
 
+/**
+ * Define properties type
+ */
 ShelfChanger.propTypes = {
-  shelf: PropTypes.string.isRequired,
-  move: PropTypes.func.isRequired,
+  bookInfo: PropTypes.object.isRequired,
+  updateShelf: PropTypes.func.isRequired
 };
 
 export default ShelfChanger;

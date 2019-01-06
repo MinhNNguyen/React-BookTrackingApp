@@ -1,3 +1,6 @@
+/**
+ * Main application file
+ */
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import './App.css';
@@ -6,52 +9,68 @@ import Shelf from './Shelf.js';
 import SearchBook from './SearchBook.js';
 
 class BooksApp extends React.Component {
+  
+  /**
+   * State that stored all the books on the shelves
+   */
   state = {
-    books: [],
-  }
+    books: []
+  };
 
+  /**
+   * Update data when all components are mounted
+   */
   componentDidMount() {
-    this.updateData()
-  }
+    this.updateData();
+  };
 
+  /**
+   * Update book to new shelf
+   */
   updateShelf = (book, targetShelf) => {
-    console.log(book);
-    console.log(targetShelf);
     BooksAPI.update(book, targetShelf).then(response => {
-      this.updateData()
-    })
-  }
+      this.updateData();
+    });
+  };
 
+  /**
+   * Update the state based on the output from BooksAPI
+   */
   updateData = () => {
     BooksAPI.getAll().then(data => {
       this.setState({
         books: data
-      })
-    })  
-  }
+      });
+    });
+  };
 
+  /**
+   * Generate UI based on respective router
+   */
   render() {
     return (
       <div className="app"> 
+        // Return search page
         <Route path='/search' render={() => (
-    	  <SearchBook  move={this.updateShelf} />
+    	  <SearchBook  updateShelf={this.updateShelf} shelvedBooks={this.state.books} />
         )} />
+		// Return home page
         <Route exact path='/' render={() => (
           <div className="list-books">
             <div className="list-books-title">
-              <h1>MyReads</h1>
+              <h1>Book Tracking Applicaton</h1>
             </div>
             <div className="list-books-content">
               <div>
                 <Shelf title='Currently Reading' 
-          			   books={this.state.books.filter(book => book.shelf === 'Currently Reading')} 
-					   move={this.updateShelf}/>
+          			   books={this.state.books.filter(book => book.shelf === 'currentlyReading')} 
+					   updateShelf={this.updateShelf}/>
           		<Shelf title='Want to Read'
-					   books={this.state.books.filter(book => book.shelf === 'Want to Read')}
-					   move={this.updateShelf}/>
+					   books={this.state.books.filter(book => book.shelf === 'wantToRead')}
+					   updateShelf={this.updateShelf}/>
           		<Shelf title='Read'
-					   books={this.state.books.filter(book => book.shelf === 'Read')}
-					   move={this.updateShelf}/>
+					   books={this.state.books.filter(book => book.shelf === 'read')}
+					   updateShelf={this.updateShelf}/>
               </div>
             </div>
 			<div className="open-search">
@@ -65,7 +84,7 @@ class BooksApp extends React.Component {
         )} />
       </div>
     )
-  }
+  };
 }
 
-export default BooksApp
+export default BooksApp;
