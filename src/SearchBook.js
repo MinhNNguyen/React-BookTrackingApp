@@ -55,6 +55,12 @@ class SearchBook extends Component {
    */
   changeShelf = (book, targetShelf) => {
     this.props.updateShelf(book, targetShelf);
+    let searchedBooks = this.state.searchedBooks;
+    for (let searchBooked of searchedBooks) {
+      if (searchBooked.id === book.id)
+        searchBooked.shelf = targetShelf;
+    }
+    this.setState({ searchedBooks: searchedBooks});
   };
   
   /**
@@ -78,8 +84,7 @@ class SearchBook extends Component {
         <ol className="books-grid">
           {this.state.searchedBooks.map( (book, index) => (
             <Book key={index} bookInfo={book} 
-			  updateShelf={this.changeShelf}
-			  addShelfInfo='true'/> 
+			  updateShelf={this.changeShelf}/> 
   		  ))}
         </ol>
       </div>

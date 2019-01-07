@@ -5,11 +5,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ShelfChanger from './ShelfChanger';
 
-
 const Book = props => {
   
-  const imageLink = props.bookInfo.imageLinks !== undefined ? props.bookInfo.imageLinks.thumbnail : 
-    'https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwj1vLfkttzfAhVtFjQIHcJ7BOsQjRx6BAgBEAU&url=http%3A%2F%2Fwww.clker.com%2Fclipart-image-missing-1.html&psig=AOvVaw0snSgMUIG_K-8McjjHqsti&ust=1546976490702542';
+  const missingIcon = 'http://books.google.com/books/content?id=NLK2AAAAIAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api';
+  const imageLink = props.bookInfo.imageLinks !== undefined ? props.bookInfo.imageLinks.thumbnail : missingIcon;
   
   /**
    * Return UI for the element
@@ -25,7 +24,6 @@ const Book = props => {
       <div className="book-authors">
 		{ Array.isArray(props.bookInfo.authors) ? props.bookInfo.authors.join(', '): '' }
 	  </div>
-
     </div>  
   );
 };
