@@ -1,7 +1,7 @@
 # Book Tracking Application
 
-A  responsive web application that let user search and add Books to one of three shelfves: Currently Reading, Want to Read and Read. 
-The backend API was given and was only responeded to a particular list of search team provided below.
+A responsive web application that let user search and add and move books to one of three shelves or off the shelf. Those three shelves are Currently Reading, Want to Read and Read. 
+The backend API is only responeded to the list of search terms provided below.
 
 # Built With
 Javascript, React, BooksAPI
