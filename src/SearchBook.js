@@ -77,7 +77,9 @@ class SearchBook extends Component {
       <div className="search-books-results">
         <ol className="books-grid">
           {this.state.searchedBooks.map( (book, index) => (
-            <Book key={index} bookInfo={book} updateShelf={this.changeShelf}/> 
+            <Book key={index} bookInfo={book} 
+			  updateShelf={this.changeShelf}
+			  addShelfInfo='true'/> 
   		  ))}
         </ol>
       </div>

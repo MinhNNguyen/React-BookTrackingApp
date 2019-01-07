@@ -50,11 +50,9 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app"> 
-        // Return search page
         <Route path='/search' render={() => (
     	  <SearchBook  updateShelf={this.updateShelf} shelvedBooks={this.state.books} />
         )} />
-		// Return home page
         <Route exact path='/' render={() => (
           <div className="list-books">
             <div className="list-books-title">
